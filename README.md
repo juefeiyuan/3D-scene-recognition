@@ -1,2 +1,2 @@
-# PyTorch code for MVCNN  
+# PyTorch code for sMVCNN  
 
