@@ -9,4 +9,4 @@ You can obtain the code and other source files by directly downloading via this 
 ## Dataset
 You can obtain the dataset by by accessing the following dataset webpage.  
 
-[1] **TCL**: http://orca.st.usm.edu/~bli/Scene_SBR_IBR/
+[1] **Dataset**: http://orca.st.usm.edu/~bli/Scene_SBR_IBR/
