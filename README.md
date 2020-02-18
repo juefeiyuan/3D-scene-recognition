@@ -1,2 +1,0 @@
-# PyTorch code for sMVCNN  
-
