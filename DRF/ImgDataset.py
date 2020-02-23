@@ -28,13 +28,13 @@ class MultiviewImgDataset(torch.utils.data.Dataset):
 
         set_ = root_dir.split('/')[-1]
         parent_dir = root_dir.rsplit('/',2)[0]
-        self.root= 'D:/JuefeiYuan/TensorFlowFiles/SHREC2018_Plus_VGG/PytorchVersion/Multi_View/mvcnn_pytorch-master_SHREC/'########
+        self.root= 'mvcnn_pytorch-master_SHREC/'########
         parent_dir = self.root + parent_dir #######
         self.filepaths = []
         for i in range(len(self.classnames)):
             all_files = sorted(glob.glob(parent_dir+'/'+self.classnames[i]+'/'+set_+'/*.png'))
             ## Select subset for different number of views
-            #stride = int(12/self.num_views) # 12 6 4 3 2 1
+
             stride = int(13/self.num_views) # 12 6 4 3 2 1
             all_files = all_files[::stride]
 
@@ -78,7 +78,6 @@ class MultiviewImgDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         path = self.filepaths[idx*self.num_views]
-        #class_name = path.split('/')[-3]
         class_name = path.split('/')[-2]###############
         class_id = self.classnames.index(class_name)
         # Use PIL instead
@@ -109,11 +108,11 @@ class SingleImgDataset(torch.utils.data.Dataset):
 
         set_ = root_dir.split('/')[-1]
         parent_dir = root_dir.rsplit('/',2)[0]
-        self.root= 'D:/JuefeiYuan/TensorFlowFiles/SHREC2018_Plus_VGG/PytorchVersion/Multi_View/mvcnn_pytorch-master_SHREC/'########
+        self.root= 'mvcnn_pytorch-master_SHREC/'########
         parent_dir = self.root + parent_dir #######
         self.filepaths = []
        
-        #sb1=glob.glob('D:/JuefeiYuan/TensorFlowFiles/SHREC2018_Plus_VGG/PytorchVersion/Multi_View/mvcnn_pytorch-master/tools/modelnet40_images_new_12x/airplane/train/*.png')#加上r让字符串不转义
+        
         for i in range(len(self.classnames)):
             all_files = sorted(glob.glob(parent_dir+'/'+self.classnames[i]+'/'+set_+'/*.png'))
             if num_models == 0:
@@ -138,7 +137,6 @@ class SingleImgDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         path = self.filepaths[idx]
-        #class_name = path.split('/')[-3]
         class_name = path.split('/')[-2]############
         class_id = self.classnames.index(class_name)
 

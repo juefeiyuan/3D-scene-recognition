@@ -45,10 +45,10 @@ classes = ['airport_terminal',
 #checkpoint_path = Path.cwd() /  'notable_runs' / 'shrec_checkpoint.pth'
 
 batch_size = 64
-images_per_class=910#700 for 2D images, 910 for 13 views 3D sampled scenes, 560 for 8 views 3D sampled scenes, 420 for 6 views 3D sampled scenes，
+images_per_class=910
 
 lesk_path = Path.cwd() / 'Comprehensive_Lesk_Similary_Distances.csv'
-path_to_yolo_outputs = Path.cwd() / 'XXXXXXXXXXXXcount_result_30classes_3D_scenes_13views'
+path_to_yolo_outputs = Path.cwd() / 'count_result_30classes_3D_scenes_13views'
 lesk_distances = pd.read_csv(lesk_path)
 visualized_ground_truth = yolo_output_to_dict(path_to_yolo_outputs, images_per_class)
 trained_vector = load_trained_vector(path_to_yolo_outputs)######
@@ -86,11 +86,10 @@ class ModelNetTrainer(object):
         summed_vis_truth = torch.zeros((batch_size, 1, 210))
         target_trained_vector = torch.zeros((batch_size, 1, 210))
 
-        #target=torch.zeros((len(labels),30))####
+        
 
         # For each label in the Current Batch
         for label in range(len(labels)):
-            #target[label][labels[label]]=1####
 
             # Get label name  
             # Update the sliced similarity accordingly 
@@ -102,10 +101,7 @@ class ModelNetTrainer(object):
             target_trained_vector[label]=trained_vector[classes[cur_label_name]]
         
 
-        #target = target.to(device)####
-        #LAMBDA = 0.5
-        #CME = torch.dot(summed_vis_truth, similarity_dist) 
-        #loss = F.binary_cross_entropy(yolo_ground_truth, vgg_pred, reduction='mean') + LAMBDA * F.binary_cross_entropy(CME, vgg_pred ,reduction='mean')
+        
         loss1 = (1-self.LAMBDA_val)*F.cross_entropy(vgg_pred, labels, reduction='mean')#*(1-LAMBDA) 
         loss2 = self.LAMBDA_val * 10 * F.binary_cross_entropy(summed_vis_truth, target_trained_vector ,reduction='mean') 
         return loss1+loss2
@@ -236,9 +232,7 @@ class ModelNetTrainer(object):
         val_overall_acc = acc.cpu().data.numpy()
         loss = all_loss / len(self.val_loader)
 
-        #print ('val mean class acc. : ', val_mean_class_acc)
-        #print ('val overall acc. : ', val_overall_acc)
-        #print ('val loss : ', loss)
+
         print ('test mean class acc. : ', val_mean_class_acc)
         print ('test overall acc. : ', val_overall_acc)
         print ('test loss : ', loss)
