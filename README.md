@@ -4,7 +4,9 @@ This is the source code repository for the methods evaluated in the following ma
 "**Semantic Tree-Based 3D Scene Model Recognition**".
 
 ## Code
-You can obtain the code and other source files by directly downloading via this respository 
+You can obtain the code and trained model files by directly downloading via this respository 
+
+[1] **Dataset**: http://orca.st.usm.edu/~bli/3DSceneRecognition/data.html
 
 ## Dataset
 You can obtain the dataset by by accessing the following dataset webpage.  
