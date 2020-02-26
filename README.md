@@ -25,7 +25,7 @@ The trained models include:
 
 You can obtain the trained model files by directly downloading via this respository 
 
-**Code and trained models**: http://orca.st.usm.edu/~bli/3DSceneRecognition/data.html
+**Trained models**: http://orca.st.usm.edu/~bli/3DSceneRecognition/data.html
 
 ## Benchmark
 You can obtain the 3D scene benchmark by by accessing the following dataset webpage.  
