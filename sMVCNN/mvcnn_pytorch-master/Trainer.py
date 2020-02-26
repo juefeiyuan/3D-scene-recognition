@@ -77,35 +77,6 @@ class ModelNetTrainer(object):
         if self.log_dir is not None:
             self.writer = SummaryWriter(log_dir)
 
-    def semantic_bce(self, vgg_pred, labels):
-        #print (vgg_pred)
-        #print (labels)
-
-        # Batch similarity distance
-        similarity_dist = torch.zeros((batch_size, 210))
-        summed_vis_truth = torch.zeros((batch_size, 1, 210))
-        target_trained_vector = torch.zeros((batch_size, 1, 210))
-
-        
-
-        # For each label in the Current Batch
-        for label in range(len(labels)):
-
-            # Get label name  
-            # Update the sliced similarity accordingly 
-            cur_label_name = labels[label]
-            similarity_dist[label] = torch.from_numpy(lesk_distances[classes[cur_label_name]].values)
-
-            summed_vis_truth[label] = visualized_ground_truth[classes[cur_label_name]]
-            summed_vis_truth[label]=summed_vis_truth[label]*similarity_dist[label]########
-            target_trained_vector[label]=trained_vector[classes[cur_label_name]]
-        
-
-        
-        loss1 = (1-self.LAMBDA_val)*F.cross_entropy(vgg_pred, labels, reduction='mean')#*(1-LAMBDA) 
-        loss2 = self.LAMBDA_val * 10 * F.binary_cross_entropy(summed_vis_truth, target_trained_vector ,reduction='mean') 
-        return loss1+loss2
-
     def train(self, n_epochs):
 
         best_acc = 0
@@ -139,8 +110,8 @@ class ModelNetTrainer(object):
 
                 out_data = self.model(in_data)
 
-                ####loss = self.loss_fn(out_data, target)
-                loss = self.semantic_bce(out_data, target)
+                loss = self.loss_fn(out_data, target)
+                
                 
                 self.writer.add_scalar('train/train_loss', loss, i_acc+i+1)
 
