@@ -9,10 +9,10 @@ This is the source code repository for the methods proposed (DRF) or evaluated (
 **"probability_distributions" folder**: all the 30 scene categories' object occurrence probability distributions.
 
 ## Code
-**DRF**: code for our deep random field (DRF) method. DRF shares the recognition framework with MVCNN but incorporates semantic information into the recognition process by integrating an additional semantic tree-based loss into the loss function definition.\
+**DRF**: code for our deep random field (DRF) method. DRF shares the recognition framework with MVCNN but incorporates semantic information into the recognition process by integrating an additional semantic tree-based loss into the loss function definition.
 
 **sMVCNN**: code for a baseline method scene based MVCNN (sMVCNN) which is modified from MVCNN (http://vis-www.cs.umass.edu/mvcnn/): changed the input
-from 3D models to 3D scene models accordingly to run on the benchmark in our experiments. \
+from 3D models to 3D scene models accordingly to run on the benchmark in our experiments. 
 
 ## Dataset
 Please download the 3D scene benchmark **Scene_SBR_IBR directly** via its dataset webpage. 
